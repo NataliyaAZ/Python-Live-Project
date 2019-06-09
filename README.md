@@ -238,18 +238,18 @@ class EventCalendar(TemplateView):
 .html( extract from event-calendar.html - Create Form as an example)
 
 <form  method="POST">
-                {% csrf_token %}
-                        <div class="field has-addons">
-                            <div class="control is-expanded">
-                                {{ form.as_ul }}
-                            </div>
-                           <div class="control">
-                                <button type="submit" name="btnsubmit" class="button is-info">
-                                   Submit
-                                </button>
-                            </div>
-                        </div>
-     </form>
+    {% csrf_token %}
+        <div class="field has-addons">
+             <div class="control is-expanded">
+                  {{ form.as_ul }}
+             </div>
+       	     <div class="control">
+                <button type="submit" name="btnsubmit" class="button is-info">
+                     Submit
+                </button>
+             </div>
+        </div>
+ </form>
 
 Working first time with API was quite challenging but highly beneficial. The main challenge was every API has its own information that it releases to an outside application and its own methods that should be used to retrieve those information. Thus, carefully go through the API documentation and obtaining API key can take a while.
 
