@@ -57,18 +57,24 @@ class ProfileView(TemplateView):
 
 .html (form for image upload)
 
+~~~html
 <form style='color:white;font-size: 13px;' method="post" enctype = "multipart/form-data">
               <h3>You can upload or change Profile Image here:</h3>
                {% csrf_token %}
                {{ form }}
               <button type="submit">Upload</button>
 </form>
+~~~
+
 .html (navigation bar)
+
+~~~html
 <a class="navbar-brand" href="#">
       {% if user.userprofile.image %}
            <img src="{{ user.userprofile.image.url }}" width="50" height="48" alt="">
       {% endif %}
  </a>
+~~~
 
 2.	Create and Update Event in Google Events Calendar
 
@@ -223,7 +229,9 @@ class EventCalendar(TemplateView):
                 event = service.events().update(calendarId='primary', eventId=event['id'], body=event).execute(  
         return HttpResponseRedirect('/events-calendar/')
 
-html( extract from event-calendar.html - Create Form as an example)
+.html( extract from event-calendar.html - Create Form as an example)
+
+~~~html
 <form  method="POST">
     {% csrf_token %}
         <div class="field has-addons">
@@ -236,8 +244,8 @@ html( extract from event-calendar.html - Create Form as an example)
                 </button>
              </div>
         </div>
- </form>
-
+ </form>*//
+~~~
 Working first time with API was quite challenging but highly beneficial. The main challenge was every API has its own information that it releases to an outside application and its own methods that should be used to retrieve those information. Thus, carefully go through the API documentation and obtaining API key can take a while.
 
 Overall, the project was a great experience in using Django and Python for the web development.
