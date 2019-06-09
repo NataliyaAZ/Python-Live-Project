@@ -7,7 +7,7 @@ My contributions to the project were two back end stories described below.
 Once users create their accounts on the website the user profiles created too. The users then can upload their profile images and the image should appear in navigation bar.
 
 models.py
-
+~~~
 #User Profile Model (including Profile Image column, 2 other fields were creating for user profile future extension)
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -25,14 +25,14 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
-	
+~~~	
 forms.py
-
+~~~
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['image']
-
+~~~
 views.py
 
 class ProfileView(TemplateView):
@@ -81,7 +81,7 @@ class ProfileView(TemplateView):
 While logged in, users should be able to create and update events in their google calendar. To create events users should enter event title, start date and time, and end date and time of the event. To update events users should first search for the event, then update and submit the updated event.
 
 Forms.py 
-
+~~~
 class EventForm(forms.Form):
     event_title = forms.CharField(max_length=100,required=True)
     start_date = forms.DateField(initial=datetime.now(), required=True)
@@ -100,9 +100,9 @@ class UpdateForm(forms.Form):
     event_enddate_to_update = forms.DateField(required=True)
     event_endtime_to_update = forms.TimeField(required=True)
     event_id_donot_change = forms.CharField(max_length=100,required=True)
-
+~~~
 views.py
-
+~~~
 class EventCalendar(TemplateView):
     template_name = 'events-calendar.html'
      
@@ -228,7 +228,7 @@ class EventCalendar(TemplateView):
                 }
                 event = service.events().update(calendarId='primary', eventId=event['id'], body=event).execute(  
         return HttpResponseRedirect('/events-calendar/')
-
+~~~
 .html( extract from event-calendar.html - Create Form as an example)
 
 ~~~html
