@@ -76,7 +76,6 @@ While logged in, users should be able to create and update events in their googl
 
 Forms.py 
 
-
 class EventForm(forms.Form):
     event_title = forms.CharField(max_length=100,required=True)
     start_date = forms.DateField(initial=datetime.now(), required=True)
@@ -111,7 +110,6 @@ class EventCalendar(TemplateView):
     def getCalendarService(self):
         # Connect to Google calendar API
         SCOPES = ['https://www.googleapis.com/auth/calendar.events']
-            
         creds = None
         # The file token.pickle stores the user's access and refresh tokens, and is
         # created automatically when the authorization flow completes for the first
@@ -130,13 +128,11 @@ class EventCalendar(TemplateView):
             # Save the credentials for the next run
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
-
         return build('calendar', 'v3', credentials=creds)
-
 
     #Processing events
     def post(self, request):
-                
+               
         #Create Event
         if request.method == 'POST' and 'btnsubmit' in request.POST:
             form = EventForm(request.POST)
@@ -169,9 +165,7 @@ class EventCalendar(TemplateView):
                         ],
                     },
                 }
-
                 event = service.events().insert(calendarId='primary', body=event).execute()
-             
                 return HttpResponseRedirect('/events-calendar/') 
         
         #Update events
@@ -198,11 +192,8 @@ class EventCalendar(TemplateView):
                 formUpdate = UpdateForm(initial={'event_title_to_update':event_name, 'event_id_donot_change':event_id})
                 formSearch = SearchForm()
                 form = EventForm()
-                
                 return render (request, self.template_name, {'form':form,'formSearch':formSearch,'formUpdate':formUpdate})
-        
- 
-                      
+                              
         #Submit updated event
         if  request.method == 'POST' and 'btnupdate' in request.POST:
             form = UpdateForm(request.POST)
@@ -219,7 +210,6 @@ class EventCalendar(TemplateView):
 
                 #Retrieve the event from Google Calendar, update, and submit 
                 event = service.events().get(calendarId='primary', eventId=event_id).execute()
-
                 event = {
                     'summary': event_summary,
                     'start': {
@@ -230,13 +220,10 @@ class EventCalendar(TemplateView):
                     },
                     'id': event_id,
                 }
-                
-                event = service.events().update(calendarId='primary', eventId=event['id'], body=event).execute()
-                print(event)
+                event = service.events().update(calendarId='primary', eventId=event['id'], body=event).execute(  
         return HttpResponseRedirect('/events-calendar/')
 
-.html( extract from event-calendar.html - Create Form as an example)
-
+html( extract from event-calendar.html - Create Form as an example)
 <form  method="POST">
     {% csrf_token %}
         <div class="field has-addons">
