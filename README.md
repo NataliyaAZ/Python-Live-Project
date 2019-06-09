@@ -1,8 +1,13 @@
 The Python Live Project was one of the four projects I participated at the Tech Academy. During the project I was working in a team of several developers on creating a web scraper application in Django. Each of us could select as front end so back end user stories to work on. For me, the really great part about the project was getting rewarding experience with Django framework in a team of other passionate developers where we could share problems we faced and how we overcame them. 
+
 My contributions to the project were two back end stories described below.
+
 1.	User Profile Image in Navigation Bar
+
 Once users create their accounts on the website the user profiles created too. The users then can upload their profile images and the image should appear in navigation bar.
+
 models.py
+
 #User Profile Model (including Profile Image column, 2 other fields were creating for user profile future extension)
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -11,6 +16,7 @@ class UserProfile(models.Model):
     image = models.ImageField(upload_to='profile_image',null=True, blank=True)
 
 #Create UserProfile when  users sign up
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -19,13 +25,16 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+	
 forms.py
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['image']
 
 views.py
+
 class ProfileView(TemplateView):
     template_name = 'profile.html'
 
@@ -47,6 +56,7 @@ class ProfileView(TemplateView):
         return render (request, self.template_name, {'form':form})
 
 .html (form for image upload)
+
 <form style='color:white;font-size: 13px;' method="post" enctype = "multipart/form-data">
               <h3>You can upload or change Profile Image here:</h3>
                {% csrf_token %}
@@ -61,9 +71,12 @@ class ProfileView(TemplateView):
  </a>
 
 2.	Create and Update Event in Google Events Calendar
+
 While logged in, users should be able to create and update events in their google calendar. To create events users should enter event title, start date and time, and end date and time of the event. To update events users should first search for the event, then update and submit the updated event.
 
 Forms.py 
+
+
 class EventForm(forms.Form):
     event_title = forms.CharField(max_length=100,required=True)
     start_date = forms.DateField(initial=datetime.now(), required=True)
@@ -84,6 +97,7 @@ class UpdateForm(forms.Form):
     event_id_donot_change = forms.CharField(max_length=100,required=True)
 
 views.py
+
 class EventCalendar(TemplateView):
     template_name = 'events-calendar.html'
      
@@ -177,7 +191,7 @@ class EventCalendar(TemplateView):
                 service = self.getCalendarService()
 
                 #Find the event in Google calendar and display Event Title and Event Id in Update Event Form  
-                events = service.events().list(calendarId='primary', timeMax=event_start_date+'T'+event_time_max+'-07:00',       timeMin=event_start_date+'T'+event_start_time+'-07:00').execute()
+                events = service.events().list(calendarId='primary', timeMax=event_start_date+'T'+event_time_max+'-07:00',                                        timeMin=event_start_date+'T'+event_start_time+'-07:00').execute()
                 event, = events['items']
                 event_name = event['summary']
                 event_id = event['id']
@@ -222,6 +236,7 @@ class EventCalendar(TemplateView):
         return HttpResponseRedirect('/events-calendar/')
 
 .html( extract from event-calendar.html - Create Form as an example)
+
 <form  method="POST">
                 {% csrf_token %}
                         <div class="field has-addons">
