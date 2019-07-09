@@ -2,7 +2,7 @@ The Python Live Project was one of the four projects I participated at the Tech 
 
 My contributions to the project were two back end stories described below.
 
-1.	User Profile Image in Navigation Bar
+#### 1.	User Profile Image in Navigation Bar
 
 Once users create their accounts on the website the user profiles created too. The users then can upload their profile images and the image should appear in navigation bar.
 
@@ -76,7 +76,7 @@ class ProfileView(TemplateView):
  </a>
 ~~~
 
-2.	Create and Update Event in Google Events Calendar
+#### 2.	Create and Update Event in Google Events Calendar
 
 While logged in, users should be able to create and update events in their google calendar. To create events users should enter event title, start date and time, and end date and time of the event. To update events users should first search for the event, then update and submit the updated event.
 
