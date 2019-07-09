@@ -80,7 +80,7 @@ class ProfileView(TemplateView):
 
 While logged in, users should be able to create and update events in their google calendar. To create events users should enter event title, start date and time, and end date and time of the event. To update events users should first search for the event, then update and submit the updated event.
 
-Forms.py 
+forms.py 
 ~~~
 class EventForm(forms.Form):
     event_title = forms.CharField(max_length=100,required=True)
