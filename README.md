@@ -4,7 +4,7 @@ My contributions to the project were two back end stories described below.
 
 #### 1.	User Profile Image in Navigation Bar
 
-Once users create their accounts on the website the user profiles created too. The users then can upload their profile images and the image should appear in navigation bar.
+Once users create their accounts the user profile created authomatically as well. The users then can upload their profile images and the image would appear in the navigation bar.
 
 models.py
 ~~~
@@ -34,7 +34,7 @@ class ProfileForm(forms.ModelForm):
         fields = ['image']
 ~~~
 views.py
-
+~~~
 class ProfileView(TemplateView):
     template_name = 'profile.html'
 
@@ -45,16 +45,16 @@ class ProfileView(TemplateView):
     def post(self, request):
          if request.method == 'POST':
          	form_old = ProfileForm(data=request.POST, files=request.FILES)
-              if form_old.is_valid() and 'image' in request.FILES:
+            if form_old.is_valid() and 'image' in request.FILES:
             	    request.user.userprofile.image.delete()
 
-             form = ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
-             if form.is_valid():
+            form = ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+            if form.is_valid():
                   form.save()
         else:
             form = ProfileForm(instance=request.user.userprofile)
         return render (request, self.template_name, {'form':form})
-
+~~~
 .html (form for image upload)
 
 ~~~html
