@@ -246,7 +246,7 @@ class EventCalendar(TemplateView):
         </div>
  </form>*//
 ~~~
-Working first time with API was quite challenging but highly beneficial. The main challenge was every API has its own information that it releases to an outside application and its own methods that should be used to retrieve those information. Thus, carefully go through the API documentation and obtaining API key can take a while.
+Working first time with API was quite challenging but highly beneficial. The main challenge was every API has its own information that it releases to an outside application and its own methods that should be used to retrieve those information. Thus, carefully go through the API documentation and obtaining API key are essential when working with APIs.
 
 Overall, the project was a great experience in using Django and Python for the web development.
 
