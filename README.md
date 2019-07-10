@@ -1,6 +1,6 @@
 The Python Live Project was one of the four projects I participated at the Tech Academy. 
 
-There are total 4 Live Projects offered by the Academy to their students: Python Project, C# Project, Front End and [Back End Projects](python-backend-project/readme.md). 
+There are total 4 Live Projects offered by the Academy to their students: Python Project, [C# Project](https://github.com/NataliyaAZ/C-Sharp-Live-Project/blob/master/README.md), [Front End](https://github.com/NataliyaAZ/C-Sharp-FrontEnd-Project/blob/master/README.md) and [Back End Projects](https://github.com/NataliyaAZ/Python-BackEnd-Project/blob/master/README.md). 
 
 During the project I was working in a team of several developers on creating a web scraper application in Django. Each of us could select as front end so back end user stories to work on. For me, the really great part about the project was getting rewarding experience with Django framework in a team of other passionate developers where we could share problems we faced and how we overcame them. 
 
